@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace merge {
-  function merge(a: TODO, b: TODO): TODO {
+  function merge<T1, T2>(a: T1, b: T2): T1 & T2 {
     return { ...a, ...b };
   }
 
