@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace pickOne {
-  function pickOne(a: TODO, b: TODO): TODO {
+  function pickOne<T1, T2>(a: T1, b: T2): T1 | T2 {
     return Math.random() > 0.5 ? a : b;
   }
 
