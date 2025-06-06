@@ -1,5 +1,5 @@
 namespace debouncedFn {
-  let debouncedFn: TODO;
+  let debouncedFn: Function & { cancel: Function };
 
   debouncedFn = Object.assign(() => {}, { cancel: () => {} });
 
