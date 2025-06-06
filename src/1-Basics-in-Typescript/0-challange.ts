@@ -1,5 +1,5 @@
 namespace move {
-  function move(direction: TODO) {
+  function move(direction: "backward" | "forward") {
     // some code
   }
 
