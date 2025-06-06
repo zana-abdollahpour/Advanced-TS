@@ -1,5 +1,5 @@
-namespace exhaustive {
-  function exhaustive(...args: TODO) {}
+namespace Exhaustive {
+  function exhaustive(...args: never[]) {}
 
   const HOURS_PER_DAY = 24;
   // Since `HOURS_PER_DAY` is a `const`, the next
@@ -30,10 +30,11 @@ namespace exhaustive {
     switch (input) {
       case 1:
         return "!";
+
       // the case where input === 2 isn't handled,
       // so `exhaustive` shouldn't be called.
-      // @ts-expect-error ❌
       default:
+        // @ts-expect-error ❌
         exhaustive(input);
     }
   };
