@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace assign {
-  type Assign<A, B> = TODO;
+  type Assign<A, B> = Omit<A, keyof B> & B;
 
   const assign = <A, B>(obj1: A, obj2: B): Assign<A, B> => ({
     ...obj1,
