@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace first {
-  type First<Tuple extends any[]> = TODO;
+  type First<Tuple extends any[]> = Tuple[0];
 
   type res1 = First<[]>;
   type test1 = Expect<Equal<res1, undefined>>;
