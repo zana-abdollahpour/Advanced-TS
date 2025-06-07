@@ -1,5 +1,5 @@
 namespace nonEmptyArray {
-  type NonEmptyArray<T> = TODO;
+  type NonEmptyArray<T> = [T, ...T[]];
 
   function sendMail(addresses: NonEmptyArray<string>) {
     /* ... */
