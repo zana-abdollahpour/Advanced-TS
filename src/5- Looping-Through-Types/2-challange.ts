@@ -1,23 +1,23 @@
 import { Equal, Expect } from "..";
 
-/**
- * Type the `all` function to take a list of promises and
- * to turn them into a single promise containing a list of values.
- */
 namespace promiseAll {
   declare function all<
     // Infer `Promises` as a tuple of promises:
     Promises extends [Promise<any>, ...Promise<any>[]]
   >(promises: Promises): All<Promises>;
 
+  // Unwrap all promises and wrap the resulting tuple type
+  // in a `Promise`:
   type All<Promises> = Promise<UnwrapAll<Promises>>;
 
-  type UnwrapAll<Promises> = Promises extends [
-    Promise<infer Value>,
-    ...infer Rest
-  ]
-    ? [Value, ...UnwrapAll<Rest>]
-    : [];
+  // This is a "map" loop!
+  type UnwrapAll<Promises> =
+    // 1. split the list, and infer the promise's `value`:
+    Promises extends [Promise<infer Value>, ...infer Rest]
+      ? // 2. Add the value to the array, recurse on `Rest`:
+        [Value, ...UnwrapAll<Rest>]
+      : // 3. If the list is empty, return an empty list:
+        [];
 
   // Two promises
   const res1 = all([Promise.resolve(20), Promise.resolve("Hello" as const)]);
