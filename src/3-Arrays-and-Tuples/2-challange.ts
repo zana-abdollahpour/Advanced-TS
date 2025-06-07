@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace append {
-  type Append<Tuple extends any[], Element> = TODO;
+  type Append<Tuple extends any[], Element> = [...Tuple, Element];
 
   type res1 = Append<[1, 2, 3], 4>;
   type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
