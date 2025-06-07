@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace removeId {
-  type RemoveId<Obj> = TODO;
+  type RemoveId<Obj> = Omit<Obj, "id">;
 
   type res1 = RemoveId<{
     id: number;
