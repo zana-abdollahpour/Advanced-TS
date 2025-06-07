@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace tupleToArray {
-  type TupleToArray<Tuple extends any[]> = TODO;
+  type TupleToArray<Tuple extends any[]> = Array<Tuple[number]>;
 
   type res1 = TupleToArray<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, (1 | 2 | 3)[]>>;
