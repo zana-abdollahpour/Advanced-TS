@@ -4,7 +4,8 @@ namespace optionalId {
   /**           This is called a type constraint.
    *            We'll learn more about it.
    *                         👇                      */
-  type MakeIdOptional<Obj extends { id: unknown }> = TODO;
+  type MakeIdOptional<Obj extends { id: unknown }> = Omit<Obj, "id"> &
+    Partial<Pick<Obj, "id">>;
 
   type res1 = MakeIdOptional<{
     id: number;
