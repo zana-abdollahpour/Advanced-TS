@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace valueof {
-  type ValueOf<Obj> = TODO;
+  type ValueOf<Obj> = Obj[keyof Obj];
 
   type res1 = ValueOf<{ a: number; b: string }>;
   type test1 = Expect<Equal<res1, number | string>>;
