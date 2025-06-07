@@ -1,7 +1,9 @@
 import { Equal, Expect } from "..";
 
 namespace last {
-  type Last<Tuple extends any[]> = TODO;
+  type Last<Tuple extends any[]> = Tuple extends [...unknown[], infer Last]
+    ? Last
+    : never;
 
   type res1 = Last<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, 3>>;
