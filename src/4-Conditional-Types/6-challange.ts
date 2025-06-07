@@ -1,7 +1,9 @@
 import { Equal, Expect } from "..";
 
 namespace dropFirst {
-  type DropFirst<Tuple extends any[]> = TODO;
+  type DropFirst<Tuple extends any[]> = Tuple extends [unknown, ...infer Rest]
+    ? Rest
+    : [];
 
   type res1 = DropFirst<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, [2, 3]>>;
