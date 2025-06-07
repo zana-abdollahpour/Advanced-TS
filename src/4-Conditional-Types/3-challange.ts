@@ -1,7 +1,9 @@
 import { Equal, Expect } from "..";
 
 namespace getWithDefault {
-  type GetWithDefault<Key, Obj, Default> = TODO;
+  type GetWithDefault<Key, Obj, Default> = Key extends keyof Obj
+    ? Obj[Key]
+    : Default;
 
   function getWithDefault<K extends string, O extends {}, D>(
     key: K,
