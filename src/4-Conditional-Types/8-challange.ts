@@ -11,7 +11,9 @@ import { Equal, Expect } from "..";
  *       them in a tuple type (pattern matching).
  */
 namespace and {
-  type AND<A, B> = TODO;
+  // type AND<A, B> = A extends true ? (B extends true ? true : false) : false; // Solution 1
+  // type AND<A, B> = [A, B] extends [true, true] ? true : false; // Solution 2
+  type AND<A, B> = [A, B] extends true[] ? true : false;
 
   type res1 = AND<true, true>;
   type test1 = Expect<Equal<res1, true>>;
