@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace length {
-  type Length<Tuple extends any[]> = TODO;
+  type Length<Tuple extends any[]> = Tuple["length"];
 
   type res1 = Length<[]>;
   type test1 = Expect<Equal<res1, 0>>;
