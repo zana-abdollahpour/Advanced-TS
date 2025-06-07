@@ -12,7 +12,12 @@ namespace assign {
     Objects extends [{}, ...{}[]]
   >(...objects: Objects): AssignAll<Objects>;
 
-  type AssignAll<Tuple> = TODO;
+  type AssignAll<Tuple, Output = {}> = Tuple extends [
+    infer First,
+    ...infer Rest
+  ]
+    ? AssignAll<Rest, Output & First>
+    : Output;
 
   // Two objects
   const res1 = assign({ name: "Jack", age: 99 }, { childrenCount: 3 });
