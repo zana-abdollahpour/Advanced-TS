@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace getName {
-  type GetName<Input> = TODO;
+  type GetName<Input> = Input extends { name: infer Name } ? Name : undefined;
 
   type res1 = GetName<{ name: "Jack" }>;
   type test1 = Expect<Equal<res1, "Jack">>;
