@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace flatten {
-  type Flatten<Arr extends any[]> = TODO;
+  type Flatten<Arr extends any[]> = Arr extends (infer Item)[][] ? Item[] : Arr;
 
   function flatten<A extends any[]>(arrayOfArrays: A): Flatten<A> {
     return arrayOfArrays.reduce(
