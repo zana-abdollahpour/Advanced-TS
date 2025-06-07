@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace isArray {
-  type IsArray<T> = TODO;
+  type IsArray<T> = T extends unknown[] ? true : false;
 
   type res1 = IsArray<number[]>;
   type test1 = Expect<Equal<res1, true>>;
