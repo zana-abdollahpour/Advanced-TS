@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace keys {
-  type Keys<Obj> = TODO;
+  type Keys<Obj> = keyof Obj;
 
   type res1 = Keys<{ a: number; b: string }>;
   type test1 = Expect<Equal<res1, "a" | "b">>;
