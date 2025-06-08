@@ -6,7 +6,10 @@
 import { Equal, Expect } from "..";
 
 namespace snakeToCamel {
-  type SnakeToCamel<Str> = TODO;
+  type SnakeToCamel<Str extends string> =
+    Str extends `${infer First}_${infer Rest}`
+      ? `${First}${SnakeToCamel<Capitalize<Rest>>}`
+      : Str;
 
   // it should let strings with no underscore in them unchanged
   type res1 = SnakeToCamel<"hello">;
