@@ -6,7 +6,10 @@ import { Equal, Expect } from "..";
  * first string starts with the second one.
  */
 namespace startsWith {
-  type StartsWith<Str, Start> = TODO;
+  type StartsWith<
+    Str extends string,
+    Start extends string
+  > = Str extends `${Start}${string}` ? true : false;
 
   type res1 = StartsWith<"getUsers", "get">;
   type test1 = Expect<Equal<res1, true>>;
