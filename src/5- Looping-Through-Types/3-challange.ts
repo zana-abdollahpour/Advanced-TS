@@ -15,7 +15,14 @@ namespace filterTable {
     N extends string
   >(table: T, columnNames: N[]): FilterTable<T, N>;
 
-  type FilterTable<Table, NameUnion> = TODO;
+  type FilterTable<Table, NameUnion> = Table extends [
+    infer First,
+    ...infer Rest
+  ]
+    ? First extends { name: NameUnion }
+      ? [First, ...FilterTable<Rest, NameUnion>]
+      : FilterTable<Rest, NameUnion>
+    : [];
 
   declare const userTable: [
     { name: "firstName"; values: string[] },
