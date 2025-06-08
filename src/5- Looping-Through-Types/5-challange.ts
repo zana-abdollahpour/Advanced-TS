@@ -6,7 +6,11 @@ import { Equal, Expect } from "..";
  * that isn't assignable to `Cond`.
  */
 namespace filter {
-  type Filter<Tuple, Cond> = TODO;
+  type Filter<Tuple, Cond> = Tuple extends [infer First, ...infer Rest]
+    ? First extends Cond
+      ? [First, ...Filter<Rest, Cond>]
+      : Filter<Rest, Cond>
+    : [];
 
   type res1 = Filter<[1, 2, "oops", 3, "hello"], number>;
   type test1 = Expect<Equal<res1, [1, 2, 3]>>;
