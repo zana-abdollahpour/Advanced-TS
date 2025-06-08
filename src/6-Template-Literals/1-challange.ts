@@ -6,9 +6,11 @@
  *
  * 💡 You shouldn't need a conditional type.
  */
+
+type JWTToken = `${string}.${string}.${string}`;
 namespace headers {
   type HTTPHeaders = {
-    Authentication: TODO;
+    Authentication: `Bearer ${JWTToken}`;
   };
 
   const test1: HTTPHeaders = {
@@ -19,21 +21,25 @@ namespace headers {
 
   const test2: HTTPHeaders = {
     //❌ Authentication should start with 'Bearer'
+    // @ts-expect-error
     Authentication: "n.d.s",
   };
 
   const test3: HTTPHeaders = {
     //❌ Authentication should start with 'Bearer'
+    // @ts-expect-error
     Authentication: "yohoo a.b.c",
   };
 
   const test4: HTTPHeaders = {
     //❌ token is invalid, only 1 part.
+    // @ts-expect-error
     Authentication: "Bearer kdjfl",
   };
 
   const test5: HTTPHeaders = {
     //❌ token is invalid, only 2 parts.
+    // @ts-expect-error
     Authentication: "Bearer ksdjhf.123",
   };
 }
