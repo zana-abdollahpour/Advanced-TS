@@ -8,7 +8,9 @@ import { Equal, Expect } from "..";
  * You shouldn't need recursion to solve this one.
  */
 namespace isYelling {
-  type IsYelling<Str extends string> = TODO;
+  type IsYelling<Str extends string> = Str extends Uppercase<Str>
+    ? true
+    : false;
 
   type res1 = IsYelling<"HELLO">;
   type test1 = Expect<Equal<res1, true>>;
