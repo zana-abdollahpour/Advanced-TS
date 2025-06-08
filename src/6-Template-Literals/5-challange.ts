@@ -13,7 +13,12 @@ namespace parseUrlParams {
     params: ParseUrlParams<U>
   ): void;
 
-  type ParseUrlParams<Url> = TODO;
+  type ParseUrlParams<Url extends string> =
+    Url extends `${infer Start}/${infer Rest}`
+      ? ParseUrlParams<Start> & ParseUrlParams<Rest>
+      : Url extends `:${infer Param}`
+      ? { [K in Param]: string }
+      : {};
 
   type res1 = ParseUrlParams<"user/:userId">;
   type test1 = Expect<Equal<res1, { userId: string }>>;
@@ -31,12 +36,14 @@ namespace parseUrlParams {
   navigate("user/:userId/dashboard", { userId: "2" }); // ✅
 
   //❌ `userId` is missing.
+  // @ts-expect-error
   navigate("user/:userId/dashboard/:dashboardId", { dashboardId: "2" });
 
   // ❌
   navigate("user/:userId/dashboard/:dashboardId", {
+    // @ts-expect-error
+    oops: ":(",
     userId: "2",
     dashboardId: "2",
-    oops: ":(",
   });
 }
