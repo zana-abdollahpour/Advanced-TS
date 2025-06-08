@@ -10,7 +10,15 @@ import { Equal, Expect } from "..";
  * to read the length of a tuple `T`.
  */
 namespace take {
-  type Take<Tuple extends any[], N, Output extends any[] = []> = TODO;
+  type Take<
+    Tuple extends any[],
+    N,
+    Output extends any[] = []
+  > = Output["length"] extends N
+    ? Output
+    : Tuple extends [infer First, ...infer Rest]
+    ? Take<Rest, N, [...Output, First]>
+    : Output;
 
   type res1 = Take<[1, 2, 3], 2>;
   type test1 = Expect<Equal<res1, [1, 2]>>;
