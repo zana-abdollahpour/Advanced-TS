@@ -9,7 +9,12 @@ import { Equal, Expect } from "..";
  * to generate indices
  */
 namespace withIndex {
-  type WithIndex<Tuple extends any[], Output extends any[] = []> = TodoComment;
+  type WithIndex<
+    Tuple extends any[],
+    Output extends any[] = []
+  > = Tuple extends [infer First, ...infer Rest]
+    ? WithIndex<Rest, [...Output, [First, Output["length"]]]>
+    : Output;
 
   type res1 = WithIndex<["a"]>;
   type test1 = Expect<Equal<res1, [["a", 0]]>>;
