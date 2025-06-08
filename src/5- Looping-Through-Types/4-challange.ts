@@ -10,7 +10,13 @@ import { Equal, Expect } from "..";
  * returns `[[1, true, 'a'], [2, false, 'b']]`.
  */
 namespace zip {
-  declare function zip(...arrays: TODO): TODO;
+  declare function zip<Arrays extends [unknown[], ...unknown[][]]>(
+    ...arrays: Arrays
+  ): UnwrapLists<Arrays>[];
+
+  type UnwrapLists<List> = List extends [(infer Value)[], ...infer Rest]
+    ? [Value, ...UnwrapLists<Rest>]
+    : [];
 
   const res1 = zip([1, 2], [true, false]);
   // => [[1, true], [2, false]]
