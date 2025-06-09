@@ -5,7 +5,12 @@ import { Equal, Expect } from "..";
  * false, null, 0, "", and undefined.
  */
 namespace compact {
-  declare function compact(list: TODO): TODO;
+  type Falsy = false | null | 0 | "" | undefined;
+
+  declare function compact<Item>(list: Item[]): Exclude<Item, Falsy>[];
+  // declare function compact<Item>(
+  //   list: Item[]
+  // ): (Item extends Falsy ? never : Item)[];
 
   let res1 = compact([1, 2, null, 3, undefined, 4]);
   type test1 = Expect<Equal<typeof res1, number[]>>;
