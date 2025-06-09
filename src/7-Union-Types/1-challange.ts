@@ -2,8 +2,13 @@ import { Equal, Expect } from "..";
 
 namespace getColor {
   type LogStatus = "error" | "warning" | "info";
+  interface Colors {
+    error: "red";
+    warning: "orange";
+    info: "blue";
+  }
 
-  type GetColor<Status extends LogStatus> = TODO;
+  type GetColor<Status extends LogStatus> = Colors[Status];
 
   type res1 = GetColor<"error">;
   type test1 = Expect<Equal<res1, "red">>;
