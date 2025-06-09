@@ -1,7 +1,7 @@
 import { Equal, Expect } from "..";
 
 namespace allValues {
-  type AllValues<T> = TODO;
+  type AllValues<T extends object> = T extends unknown ? T[keyof T] : never;
 
   type res1 = AllValues<{ a: "value a" }>;
   type test1 = Expect<Equal<res1, "value a">>;
