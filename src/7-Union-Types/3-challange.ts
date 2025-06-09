@@ -11,7 +11,14 @@ import { Equal, Expect } from "..";
 namespace toState {
   type Status = "loading" | "success" | "error";
 
-  type ToStates<S> = TODO;
+  type ToStates<S> = S extends unknown
+    ? {
+        status: S;
+        isLoading: S extends "loading" ? true : false;
+        data: S extends "success" ? string : undefined;
+        error: S extends "error" ? Error : null;
+      }
+    : never;
 
   /**
    * Test helpers, do not use in your solution!
