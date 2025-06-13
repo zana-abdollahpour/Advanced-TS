@@ -18,7 +18,7 @@ namespace findColumn {
   declare function findColumn<
     T extends [Column, ...Column[]],
     N extends string
-  >(table: TODO, columnNames: TODO): TODO;
+  >(table: T, columnNames: N): Extract<T[number], { name: N }>["values"];
 
   declare const userTable: [
     { name: "firstName"; values: string[] },
