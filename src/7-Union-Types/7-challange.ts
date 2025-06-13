@@ -4,7 +4,7 @@ import { Equal, Expect } from "..";
  * ❕❕❕ You are not allowed to use `Equal`!
  */
 namespace isNever {
-  type IsNever<T> = TODO;
+  type IsNever<T> = [T] extends [never] ? true : false;
 
   type res1 = IsNever<never>;
   type test1 = Expect<Equal<res1, true>>;
