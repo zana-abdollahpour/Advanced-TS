@@ -12,10 +12,10 @@ import { Equal, Expect } from "..";
  * { a: { b: unknown } } => 'a.b'
  */
 namespace allObjectPaths {
-  type AllPaths<T> = T extends Record<string, unknown>
-    ? keyof T extends infer K
+  type AllPaths<Obj> = Obj extends Record<string, unknown>
+    ? keyof Obj extends infer K
       ? K extends string
-        ? K | `${K}.${AllPaths<T[K]>}`
+        ? K | `${K}.${AllPaths<Obj[K]>}`
         : never
       : never
     : never;
