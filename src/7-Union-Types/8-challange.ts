@@ -5,7 +5,11 @@ import { Equal, Expect } from "..";
  * aren't allowed to use it! 😏
  */
 namespace equal {
-  type MyEqual<A, B> = TODO;
+  type MyEqual<A, B> = [A] extends [B]
+    ? [B] extends [A]
+      ? true
+      : false
+    : false;
 
   type res1 = MyEqual<"a", "a">;
   type test1 = Expect<Equal<res1, true>>;
