@@ -15,10 +15,10 @@ import { Equal, Expect } from "..";
  * Learn more: https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards
  */
 namespace partition {
-  declare function partition(
-    list: TODO,
-    predicate: (value: TODO) => value is TODO
-  ): TODO;
+  declare function partition<Item, Narrowed extends Item>(
+    list: Item[],
+    predicate: (value: Item) => value is Narrowed
+  ): [Narrowed[], Exclude<Item, Narrowed>[]];
 
   const res1 = partition(
     [1, 2, "N/A", 7, "oops"],
