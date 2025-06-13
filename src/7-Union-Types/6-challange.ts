@@ -5,7 +5,11 @@ import { Equal, Expect } from "..";
  * Only one level of nesting should be removed.
  */
 namespace heterogeneousFlatten {
-  type Flatten<Arr extends any[]> = TODO;
+  type Flatten<Arr extends unknown[]> = Arr extends (infer Item)[]
+    ? UnwrapArray<Item>[]
+    : never;
+
+  type UnwrapArray<T> = T extends (infer Item)[] ? Item : T;
 
   declare function flatten<A extends any[]>(arr: A): Flatten<A>;
 
