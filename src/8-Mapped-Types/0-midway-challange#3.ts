@@ -5,7 +5,9 @@ import { Equal, Expect } from "..";
  * a union of [key, value] entries into an object type.
  */
 namespace fromEntries {
-  type FromEntries<Entries extends [any, any]> = TODO;
+  type FromEntries<Entries extends [any, any]> = {
+    [Entry in Entries as Entry[0]]: Entry[1];
+  };
 
   type res1 = FromEntries<["a", string]>;
   type test1 = Expect<Equal<res1, { a: string }>>;
