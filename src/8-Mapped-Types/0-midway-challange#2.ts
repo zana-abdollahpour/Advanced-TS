@@ -7,7 +7,9 @@
  * modifier...
  */
 namespace mutable {
-  type Mutable<Obj> = TODO;
+  type Mutable<Obj> = {
+    -readonly [K in keyof Obj]: Obj[K];
+  };
 
   type res1 = Mutable<{ readonly name: string; readonly age: number }>;
   type test1 = Expect<Equal<res1, { name: string; age: number }>>;
