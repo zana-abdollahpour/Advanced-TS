@@ -8,7 +8,9 @@ import { Equal, Expect } from "..";
  * Try to implement your own version of it!
  */
 namespace pick {
-  type MyPick<Obj, T> = TODO;
+  type MyPick<Obj, T> = {
+    [Key in Extract<keyof Obj, T>]: Obj[Key];
+  };
 
   type res1 = MyPick<{ a: string; b: number; c: boolean }, "a">;
   type test1 = Expect<Equal<res1, { a: string }>>;
