@@ -6,7 +6,9 @@ import { Equal, Expect } from "..";
  * the `Condition` type parameter.
  */
 namespace pickByValue {
-  type PickByValue<Obj, Condition> = TODO;
+  type PickByValue<Obj, Condition> = FromEntries<
+    Extract<Entries<Obj>, [any, Condition]>
+  >;
 
   /** Provided helper functions */
   type Entries<Obj> = {
