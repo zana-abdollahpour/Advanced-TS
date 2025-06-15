@@ -1,6 +1,6 @@
-export const getUser = async (id: number) => {
-  const user = await fetch(`"/users"/${id}`).then((response) =>
-    response.json()
+export const getUser = async <TReturn>(id: number) => {
+  const user = await fetch(`"/users"/${id}`).then(
+    (response) => response.json() as TReturn
   );
   return user;
 };
