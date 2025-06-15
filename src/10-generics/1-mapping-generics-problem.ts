@@ -1,5 +1,5 @@
-export const submitData = <T extends { id: number; title: string }>(
-  data: T
+export const submitData = <TData extends { id: number; title: string }>(
+  data: TData
 ) => {
   return {
     ...data,
